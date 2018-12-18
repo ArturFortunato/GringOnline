@@ -15,6 +15,13 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
+  /*methods: {
+    async test () {
+      const response = await Something.test({
+        //parameters
+      })
+    }
+  }, */
   mounted: function() {
     var deck = Deck()
     deck.mount(this.$refs.board)

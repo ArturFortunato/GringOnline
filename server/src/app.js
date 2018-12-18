@@ -14,4 +14,10 @@ app.get('/', (req, res) => {
         message: "Get complete"
     })
 })
+
+/*app.get('/game', (req, res) => {
+
+    res.send({})
+}) */
+
 app.listen(process.env.PORT || 8080)

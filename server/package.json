@@ -8,7 +8,10 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "axios": "^0.18.0",
+    "deck-of-cards": "^0.1.8"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
