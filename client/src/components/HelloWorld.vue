@@ -1,6 +1,6 @@
 <template>
   <div ref="board" class="red top full">
-    <!--<h1>GRINGO!</h1> -->
+    <h1>GRINGO!</h1>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
     var deck = Deck()
     deck.mount(this.$refs.board)
 
-    deck.cards.forEach(function (card, i) {
+    /*deck.cards.forEach(function (card, i) {
       card.setSide(Math.random() < 0.5 ? 'front' : 'back');
       card.animateTo({
         delay: 1000 + i * 2, // wait 1 second + i * 2 ms
@@ -29,7 +29,7 @@ export default {
         x: Math.random() * window.innerWidth - window.innerWidth / 2,
         y: Math.random() * window.innerHeight - window.innerHeight / 2
       });
-    });
+    });*/
   }
 }
 </script>
