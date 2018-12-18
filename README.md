@@ -1,6 +1,16 @@
 # GringOnline
 Gringo card game
 
+##Install
+> Node.js
+> Vue.js
+
+#Versions
+npm -> 6.4.1
+node -> 8.12.0
+vue -> 2.9.6
+vue-cli -> 3
+
 ##Run client
 
 > cd client;
