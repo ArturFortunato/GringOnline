@@ -1,8 +1,10 @@
 <template>
   <div ref="board" class="red top full">
     <h1> {{msg}}</h1>
-    <button v-on:click = "sendget">Connect to server(Get)</button>
-    <button v-on:click = "sendpost">Connect to server(Post)</button>
+    <button v-on:click="sendget">Connect to server(Get)</button>
+    <button v-on:click="sendpost">Connect to server(Post)</button>
+    <button v-on:click="connectSocket">Connect socket.io</button>
+    <button v-on:click="submitMessage">Submit message</button>
   </div>
 </template>
 
@@ -10,24 +12,33 @@
 import Deck from 'deck-of-cards'
 import 'deck-of-cards/example/example.css'
 import api from '../Api/api'
+import io from 'socket.io-client'
 
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      socket: null
     }
   },
   methods: {
     async sendget () {
       const response = await api().get('/');
-      console.log(response.data.message);
       this.msg = response.data.message;
     },
 
     async sendpost () {
       const response = await api().post('/', {message : 'hiya'})
       this.msg = response.data.message;
+    },
+    async connectSocket () {
+      this.socket = io('http://localhost:8081')
+      console.log("connection stablished")
+    },
+    submitMessage () {
+      console.log("Sent")
+      this.socket.emit('chatmessage', 'Javardice')
     }
   },
   mounted: function() {
