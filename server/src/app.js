@@ -22,9 +22,10 @@ app.post('/', (req, res) => {
   });
 })
 
-/*app.get('/game', (req, res) => {
+app.post('/Game', (req, res) => {
+    res.send({
+        message: "Hello " + req.body.name + "!!! Welcome!"
+    })
+})
 
-    res.send({})
-}) */
-
-app.listen(process.env.PORT || 8080)
+app.listen(process.env.PORT || 8081)
