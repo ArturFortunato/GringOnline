@@ -18,6 +18,8 @@ import Deck from 'deck-of-cards'
 import 'deck-of-cards/example/example.css'
 import api from '../Api/api'
 import io from 'socket.io-client'
+import config from '@/config'
+
 
 export default {
   name: 'HelloWorld',
@@ -41,7 +43,8 @@ export default {
       this.msg = response.data.message
     },
     async connectSocket () {
-      this.socket = io('http://192.168.43.131:8081')
+      console.log("connecting to "+(config.ServerURL+"/chat"))
+      this.socket = io(config.ServerURL+"/chat")
       this.socket.on('newchatmessage', this.addMessage)
       console.log("connection stablished")
     },
