@@ -10,7 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "axios": "^0.18.0",
-    "deck-of-cards": "^0.1.8"
+    "deck-of-cards": "^0.1.8",
+    "socket.io": "^2.2.0"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
