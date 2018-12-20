@@ -4,6 +4,7 @@ const cors = require('cors')
 const morgan = require('morgan')
 
 const app = express()
+const PORT = 8081
 
 app.use(morgan('combined'))
 app.use(bodyParser.json())
@@ -28,4 +29,4 @@ app.post('/Game', (req, res) => {
     })
 })
 
-app.listen(process.env.PORT || 8081)
+app.listen(process.env.PORT || PORT)
