@@ -22,4 +22,4 @@ app.post('/Game', (req, res) => {
     })
 })
 
-app.listen(process.env.PORT || 8081)
+app.listen(process.env.PORT || 8082)
