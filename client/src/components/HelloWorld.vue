@@ -1,12 +1,15 @@
 <template>
   <div ref="board" class="red top full">
-    <h1>GRINGO!</h1>
+    <h1> {{msg}}</h1>
+    <button v-on:click = "sendget">Connect to server(Get)</button>
+    <button v-on:click = "sendpost">Connect to server(Post)</button>
   </div>
 </template>
 
 <script>
 import Deck from 'deck-of-cards'
 import 'deck-of-cards/example/example.css'
+import api from '../Api/api'
 
 export default {
   name: 'HelloWorld',
@@ -15,13 +18,18 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  /*methods: {
-    async test () {
-      const response = await Something.test({
-        //parameters
-      })
+  methods: {
+    async sendget () {
+      const response = await api().get('/');
+      console.log(response.data.message);
+      this.msg = response.data.message;
+    },
+
+    async sendpost () {
+      const response = await api().post('/', {message : 'hiya'})
+      this.msg = response.data.message;
     }
-  }, */
+  },
   mounted: function() {
     var deck = Deck()
     deck.mount(this.$refs.board)
