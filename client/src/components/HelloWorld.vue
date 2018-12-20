@@ -5,8 +5,9 @@
     <button v-on:click="sendpost">Connect to server(Post)</button>
     <button v-on:click="connectSocket">Connect socket.io</button>
     <div>
-      <input type="text" v-model="inputContent">
-      <button v-on:click="submitMessage(inputContent)">Send</button>
+      <input type="text" v-model="username" placeholder="Username">
+      <input type="text" v-model="inputContent" placeholder="Message">
+      <button v-on:click="submitMessage(username, inputContent)">Send</button>
       <p v-for="message in messages" v-bind:key="message.id"> {{ message.message }}</p>
     </div>
   </div>
@@ -25,7 +26,8 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       socket: null,
       messages: [],
-      inputContent: ""
+      inputContent: "",
+      username: ""
     }
   },
   methods: {
@@ -39,14 +41,14 @@ export default {
       this.msg = response.data.message
     },
     async connectSocket () {
-      this.socket = io('http://localhost:8081')
+      this.socket = io('http://192.168.43.131:8081')
       this.socket.on('newchatmessage', this.addMessage)
       console.log("connection stablished")
     },
     addMessage(message) {
       this.messages.push({message: message, id: this.messages.length})
     },
-    submitMessage (message) {
+    submitMessage (username, message) {
       console.log("Sent")
       this.socket.emit('chatmessage', message)
     }
