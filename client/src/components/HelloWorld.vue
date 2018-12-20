@@ -4,7 +4,11 @@
     <button v-on:click="sendget">Connect to server(Get)</button>
     <button v-on:click="sendpost">Connect to server(Post)</button>
     <button v-on:click="connectSocket">Connect socket.io</button>
-    <button v-on:click="submitMessage">Submit message</button>
+    <div>
+      <input type="text" v-model="inputContent">
+      <button v-on:click="submitMessage(inputContent)">Send</button>
+      <p v-for="message in messages" v-bind:key="message.id"> {{ message.message }}</p>
+    </div>
   </div>
 </template>
 
@@ -19,7 +23,9 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      socket: null
+      socket: null,
+      messages: [],
+      inputContent: ""
     }
   },
   methods: {
@@ -30,15 +36,19 @@ export default {
 
     async sendpost () {
       const response = await api().post('/', {message : 'hiya'})
-      this.msg = response.data.message;
+      this.msg = response.data.message
     },
     async connectSocket () {
       this.socket = io('http://localhost:8081')
+      this.socket.on('newchatmessage', this.addMessage)
       console.log("connection stablished")
     },
-    submitMessage () {
+    addMessage(message) {
+      this.messages.push({message: message, id: this.messages.length})
+    },
+    submitMessage (message) {
       console.log("Sent")
-      this.socket.emit('chatmessage', 'Javardice')
+      this.socket.emit('chatmessage', message)
     }
   },
   mounted: function() {
