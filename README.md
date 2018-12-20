@@ -1,17 +1,25 @@
 # GringOnline
 Gringo card game
 
-##Install
+## Install
 > Node.js
+
 > Vue.js
 
-#Versions
-npm -> 6.4.1
-node -> 8.12.0
-vue -> 2.9.6
-vue-cli -> 3
+> nodemon
 
-##Run client
+## Versions
+> npm -> 6.4.1
+
+> node -> 8.12.0
+
+> vue -> 2.9.6
+
+> vue-cli -> 3
+
+> nodemon -> 1.18.8
+
+## Run client
 
 > cd client;
 
@@ -19,7 +27,7 @@ vue-cli -> 3
 
 > npm run dev;
 
-##run server
+## run server
 
 > cd server;
 
@@ -27,7 +35,7 @@ vue-cli -> 3
 
 > npm run start;
 
-##Mail
+## Mail
 
 > Username: grin.go.nline16@gmail.com   
 > Password: gringonlinelab16201819!
