@@ -1,13 +1,16 @@
-module.exports = (socket,io) =>{
-  console.log("User Connected")
+const AuthenticationController = require('./AuthenticationController')
 
-  socket.on('disconnect', () => {
-    console.log("User disconnected")
+
+module.exports = (socket,io) => {
+  socket.on('chatmessage', function(payload) {
+    console.log(payload)
+    console.log("Received a chat message: "+ payload.message+" from "+payload.user)
+    var auth = AuthenticationController.verify(payload.token,payload.user);
+    if (auth){
+      console.log("Message has been authenticated")
+      io.of('chat').emit('newchatmessage', payload.message)
+    } else {
+      console.log("Message hasnt been authenticated")
+    }
   })
-
-  socket.on('chatmessage', function(message) {
-    console.log("Received a chat message: "+message)
-    io.of('chat').emit('newchatmessage', message)
-  })
-
 }

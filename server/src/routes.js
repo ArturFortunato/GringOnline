@@ -1,3 +1,4 @@
+const AuthenticationController = require('./Controllers/AuthenticationController')
 
 module.exports = (app) => {
   app.get('/', (req, res) => {
@@ -17,5 +18,9 @@ module.exports = (app) => {
       res.send({
           message: "Hello " + req.body.name + "!!! Welcome!"
       })
+  })
+
+  app.post('/Login', (req, res) => {
+      AuthenticationController.login(req,res)
   })
 }

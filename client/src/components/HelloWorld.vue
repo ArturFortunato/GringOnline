@@ -3,11 +3,14 @@
     <h1> {{msg}}</h1>
     <button v-on:click="sendget">Connect to server(Get)</button>
     <button v-on:click="sendpost">Connect to server(Post)</button>
-    <button v-on:click="connectSocket">Connect socket.io</button>
+    <br>
     <div>
       <input type="text" v-model="username" placeholder="Username">
+      <button v-on:click="connectSocket">Connect socket.io</button>
+    </div
+    <div>
       <input type="text" v-model="inputContent" placeholder="Message">
-      <button v-on:click="submitMessage(username, inputContent)">Send</button>
+      <button v-on:click="submitMessage(inputContent)">Send</button>
       <p v-for="message in messages" v-bind:key="message.id"> {{ message.message }}</p>
     </div>
   </div>
@@ -29,7 +32,8 @@ export default {
       socket: null,
       messages: [],
       inputContent: "",
-      username: ""
+      username: "",
+      usertoken: ""
     }
   },
   methods: {
@@ -39,8 +43,9 @@ export default {
     },
 
     async sendpost () {
-      const response = await api().post('/', {message : 'hiya'})
-      this.msg = response.data.message
+      const response = await api().post('/Login', {user : this.username});
+      console.log(response);
+      this.usertoken = response.data.token;
     },
     async connectSocket () {
       console.log("connecting to "+(config.ServerURL+"/chat"))
@@ -51,9 +56,9 @@ export default {
     addMessage(message) {
       this.messages.push({message: message, id: this.messages.length})
     },
-    submitMessage (username, message) {
+    submitMessage (message) {
       console.log("Sent")
-      this.socket.emit('chatmessage', message)
+      this.socket.emit('chatmessage', {message:message, user:this.username, token:this.usertoken})
     }
   },
   mounted: function() {
