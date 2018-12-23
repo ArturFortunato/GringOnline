@@ -1,0 +1,30 @@
+State:
+    {
+        numJogadores,
+        maos,
+        turnStep,
+        flagPlayedCard,
+        currentPlayer,
+        cardInTable,
+        drawnCard,
+        exchangedCard
+    }
+
+Actions (Front-> back):
+
+    - Draw card
+    - Play card
+    - Change card
+    - Call gringo
+    - Answer power
+
+Events:
+
+    - Draw card 
+    - Play card 
+    - Change card 
+    - Call gringo 
+    - Power Request
+    - Power Effect
+    - Shuffle (inicio e fim do baralho)
+    - Disconnect player
