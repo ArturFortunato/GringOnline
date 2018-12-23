@@ -21,19 +21,19 @@ Gringo card game
 
 ## Run client
 
-> cd client;
+> cd client
 
->  npm install;
+>  npm install
 
-> npm run dev;
+> npm run dev
 
 ## run server
 
-> cd server;
+> cd server
 
-> npm install;
+> npm install
 
-> npm run start;
+> npm run start
 
 ## Mail
 
