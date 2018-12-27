@@ -7,7 +7,7 @@
     <div>
       <input type="text" v-model="username" placeholder="Username">
       <input type="text" v-model="inputContent" placeholder="Message">
-      <button v-on:click="submitMessage(username, inputContent)">Send</button>
+      <button v-on:click="sendMessage(username, inputContent)">Send</button>
       <p v-for="message in messages" v-bind:key="message.id">{{ message.username }}: {{ message.message }}</p>
     </div>
   </div>
@@ -33,26 +33,36 @@ export default {
     }
   },
   methods: {
+    //Test function
     async sendget () {
       const response = await api().get('/');
       this.msg = response.data.message;
     },
 
     async sendpost () {
+      //Test function
       const response = await api().post('/', {message : 'hiya'})
       this.msg = response.data.message
     },
+    //Connects to gamae socket
     async connectSocket () {
       console.log("connecting to "+(config.ServerURL+"/chat"))
       this.socket = io(config.ServerURL+"/chat")
       this.socket.on('newchatmessage', this.addMessage)
       console.log("connection stablished")
     },
+    //Adds message to message array
     addMessage(message) {
-      
-      this.messages.push({username: message.username, message: message.message, id: this.messages.length})
+      this.messages.push(
+        {
+          username: message.username,
+          message: message.message,
+          id: this.messages.length
+        }
+      )
     },
-    submitMessage (username, message) {
+    //Sends message to everyone on the game
+    sendMessage (username, message) {
       console.log("Sent")
       this.socket.json.emit('chatmessage', {message: message, username: username})
     }
