@@ -8,7 +8,7 @@
       <input type="text" v-model="username" placeholder="Username">
       <input type="text" v-model="inputContent" placeholder="Message">
       <button v-on:click="submitMessage(username, inputContent)">Send</button>
-      <p v-for="message in messages" v-bind:key="message.id"> {{ message.message }}</p>
+      <p v-for="message in messages" v-bind:key="message.id">{{ message.username }}: {{ message.message }}</p>
     </div>
   </div>
 </template>
@@ -49,11 +49,12 @@ export default {
       console.log("connection stablished")
     },
     addMessage(message) {
-      this.messages.push({message: message, id: this.messages.length})
+      
+      this.messages.push({username: message.username, message: message.message, id: this.messages.length})
     },
     submitMessage (username, message) {
       console.log("Sent")
-      this.socket.emit('chatmessage', message)
+      this.socket.json.emit('chatmessage', {message: message, username: username})
     }
   },
   mounted: function() {
