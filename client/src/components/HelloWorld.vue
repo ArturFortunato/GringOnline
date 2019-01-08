@@ -1,15 +1,15 @@
 <template>
-  <div ref="board" class="red top full">
+  <div ref="board" class="top full">
     <h1> {{msg}}</h1>
     <button v-on:click="sendget">Connect to server(Get)</button>
     <button v-on:click="sendpost">Connect to server(Post)</button>
-    <button v-on:click="connectSocket">Connect socket.io</button>
     <div>
       <input type="text" v-model="username" placeholder="Username">
       <input type="text" v-model="inputContent" placeholder="Message">
       <button v-on:click="sendMessage(username, inputContent)">Send</button>
       <p v-for="message in messages" v-bind:key="message.id">{{ message.username }}: {{ message.message }}</p>
     </div>
+
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: 'Gringo Online',
       socket: null,
       messages: [],
       inputContent: "",
@@ -70,6 +70,8 @@ export default {
   mounted: function() {
     var deck = Deck()
     deck.mount(this.$refs.board)
+
+    this.connectSocket()
 
     /*deck.cards.forEach(function (card, i) {
       card.setSide(Math.random() < 0.5 ? 'front' : 'back');
