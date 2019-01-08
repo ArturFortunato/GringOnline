@@ -3,10 +3,10 @@
     <h1> {{msg}}</h1>
     <button v-on:click="sendget">Connect to server(Get)</button>
     <button v-on:click="sendpost">Connect to server(Post)</button>
-    <div>
-      <input type="text" v-model="username" placeholder="Username">
-      <input type="text" v-model="inputContent" placeholder="Message">
-      <button v-on:click="sendMessage(username, inputContent)">Send</button>
+    <div class="mt-3">
+      <input type="text" v-model="username" placeholder="Username" class="px-2 border-white">
+      <input type="text" v-model="inputContent" placeholder="Message" class="px-2 border-white">
+      <v-btn v-on:click="sendMessage(username, inputContent)">Send</v-btn>
       <p v-for="message in messages" v-bind:key="message.id">{{ message.username }}: {{ message.message }}</p>
     </div>
 
@@ -88,7 +88,7 @@ export default {
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 h1, h2 {
   font-weight: normal;
 }
@@ -104,9 +104,14 @@ a {
   color: #42b983;
 }
 
-.red
+.red1
 {
   border: 1px solid red;
+}
+
+.border-white
+{
+  border: 1px solid white;
 }
 
 .full
