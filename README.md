@@ -35,7 +35,3 @@ Gringo card game
 
 > npm run start;
 
-## Mail
-
-> Username: grin.go.nline16@gmail.com   
-> Password: gringonlinelab16201819!
